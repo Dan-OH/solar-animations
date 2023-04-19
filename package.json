@@ -1,0 +1,25 @@
+{
+  "name": "solar-animations",
+  "version": "1.0.0",
+  "description": "Lightweight and simple animate on scroll",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dan-OH/solar-animations.git"
+  },
+  "keywords": [
+    "animate"
+  ],
+  "author": "DanDun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dan-OH/solar-animations/issues"
+  },
+  "homepage": "https://github.com/Dan-OH/solar-animations#readme",
+  "dependencies": {
+    "core-js": "^3.30.1"
+  }
+}
