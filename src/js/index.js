@@ -14,9 +14,9 @@ Version: 1.0.0
 Author: DanDun
 */
 
-export default function solarAnimations() {
-  console.log("This is a message from the demo package");
+import '../styles/main.scss';
 
+function solarAnimations() {
   const solarElements = document.querySelectorAll('[solar]');
 
   document.addEventListener("DOMContentLoaded", function(){
@@ -42,4 +42,6 @@ export default function solarAnimations() {
       observer.observe(element);
     });
   });
-}
+};
+
+export default solarAnimations;
