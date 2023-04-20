@@ -8,7 +8,7 @@ Install package:
 npm i solar-animations
 ```
 
-Import script, styles and initialize AOS:
+Import script, styles and initialize:
 ```js
 import solarAnimations from 'solar-animations';
 import 'solar-animations/dist/solar-animations.min.css';
