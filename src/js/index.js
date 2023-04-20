@@ -17,6 +17,7 @@ Author: DanDun
 import '../styles/main.scss';
 
 function solarAnimations() {
+  console.log("Hi");
   const solarElements = document.querySelectorAll('[solar]');
 
   document.addEventListener("DOMContentLoaded", function(){
