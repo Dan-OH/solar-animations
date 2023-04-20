@@ -1,6 +1,6 @@
 {
   "name": "solar-animations",
-  "version": "1.0.0",
+  "version": "1.0.01",
   "description": "Lightweight and simple animate on scroll",
   "module": "dist/solar-animations.esm.min.js",
   "browser": "dist/solar-animations.umd.min.js",
