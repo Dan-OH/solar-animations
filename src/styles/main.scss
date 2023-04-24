@@ -1,29 +1,29 @@
 //------- Solar Animations -------
-[solar] {
+[data-solar] {
   opacity: 0;
 }
 
-[solar].solar-animated {
+[data-solar].solar-animated {
   animation-name: solar-fade;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
 
   // Fade Animations
-  &[solar=fade-up] {
+  &[data-solar=fade-up] {
     animation-name: solar-fade-up;
   }
 
-  &[solar=fade-right] {
+  &[data-solar=fade-right] {
     animation-name: solar-fade-right;
   }
 
-  &[solar=fade-left] {
+  &[data-solar=fade-left] {
     animation-name: solar-fade-left;
   }
 
   // Slide Animations
-  &[solar=slide-up] {
+  &[data-solar=slide-up] {
     animation-name: solar-slide-up;
     animation-duration: 1s;
   }

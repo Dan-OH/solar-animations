@@ -17,7 +17,7 @@ solarAnimations();
 ```
 
 ### Usage
-Add `solar` attributes to elements you want animated
+Add `data-solar` attributes to elements you want animated
 ```html
-<div solar="fade-up"></div>
+<div data-solar="fade-up"></div>
 ```
