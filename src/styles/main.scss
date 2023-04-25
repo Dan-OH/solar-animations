@@ -1,4 +1,9 @@
 //------- Solar Animations -------
+@import "mixin";
+$moving-distance: 90%;
+$rotating-angle: 90deg;
+$zoom-scale: 1.6;
+
 [data-solar] {
   opacity: 0;
 }
@@ -12,74 +17,136 @@
   // Fade Animations
   &[data-solar=fade-up] {
     animation-name: solar-fade-up;
+    @include animation-fade(solar-fade-up, 0px, $moving-distance);
+  }
+
+  &[data-solar=fade-down] {
+    animation-name: solar-fade-down;
+    @include animation-fade(solar-fade-down, 0px, -$moving-distance);
   }
 
   &[data-solar=fade-right] {
     animation-name: solar-fade-right;
+    @include animation-fade(solar-fade-right, -$moving-distance, 0px);
   }
 
   &[data-solar=fade-left] {
     animation-name: solar-fade-left;
+    @include animation-fade(solar-fade-left, $moving-distance, 0px);
+  }
+
+  &[data-solar=fade-up-left] {
+    animation-name: solar-fade-up-left;
+    @include animation-fade(solar-fade-up-left, $moving-distance, $moving-distance);
+  }
+
+  &[data-solar=fade-up-right] {
+    animation-name: solar-fade-up-right;
+    @include animation-fade(solar-fade-up-right, -$moving-distance, $moving-distance);
+  }
+
+  &[data-solar=fade-down-left] {
+    animation-name: solar-fade-down-left;
+    @include animation-fade(solar-fade-down-left, $moving-distance, -$moving-distance);
+  }
+
+  &[data-solar=fade-down-right] {
+    animation-name: solar-fade-down-right;
+    @include animation-fade(solar-fade-down-right, -$moving-distance, -$moving-distance);
+  }
+
+
+  // filp Animations
+  &[data-solar=flip-up] {
+    animation-name: solar-flip-up;
+    @include animation-flip(solar-flip-up, -$rotating-angle, 0deg);
+  }
+
+  &[data-solar=flip-down] {
+    animation-name: solar-flip-down;
+    @include animation-flip(solar-flip-down, $rotating-angle, 0deg);
+  }
+
+  &[data-solar=flip-left] {
+    animation-name: solar-flip-left;
+    @include animation-flip(solar-flip-left, 0deg, $rotating-angle);
+  }
+
+  &[data-solar=flip-right] {
+    animation-name: solar-flip-right;
+    @include animation-flip(solar-flip-right, 0deg, -$rotating-angle);
+  }
+
+
+  //Zoom Animations
+  &[data-solar=zoom-in] {
+    animation-name: solar-zoom-in;
+    @include animation-zoom(solar-zoom-in, 0, 0, 0);
+  }
+
+  &[data-solar=zoom-in-up] {
+    animation-name: solar-zoom-in-up;
+    @include animation-zoom(solar-zoom-in-up, -$moving-distance * 0.5, $moving-distance * 0.5, 0);
+  }
+
+  &[data-solar=zoom-in-down] {
+    animation-name: solar-zoom-in-down;
+    @include animation-zoom(solar-zoom-in-down, 0, -$moving-distance * 0.5, 0);
+  }
+
+  &[data-solar=zoom-in-left] {
+    animation-name: solar-zoom-in-left;
+    @include animation-zoom(solar-zoom-in-left, $moving-distance * 0.5, 0, 0);
+  }
+
+  &[data-solar=zoom-in-right] {
+    animation-name: solar-zoom-in-right;
+    @include animation-zoom(solar-zoom-in-right, -$moving-distance * 0.5, 0, 0);
+  }
+
+  &[data-solar=zoom-out] {
+    animation-name: solar-zoom-out;
+    @include animation-zoom(solar-zoom-out, 0, 0, $zoom-scale);
+  }
+
+  &[data-solar=zoom-out-up] {
+    animation-name: solar-zoom-out-up;
+    @include animation-zoom(solar-zoom-out-up, 0, $moving-distance, $zoom-scale);
+  }
+
+  &[data-solar=zoom-out-down] {
+    animation-name: solar-zoom-out-down;
+    @include animation-zoom(solar-zoom-out-down, 0, -$moving-distance, $zoom-scale);
+  }
+
+  &[data-solar=zoom-out-left] {
+    animation-name: solar-zoom-out-left;
+    @include animation-zoom(solar-zoom-out-left, $moving-distance, 0, $zoom-scale);
+  }
+
+  &[data-solar=zoom-out-right] {
+    animation-name: solar-zoom-out-right;
+    @include animation-zoom(solar-zoom-out-right, -$moving-distance, 0, $zoom-scale);
   }
 
   // Slide Animations
   &[data-solar=slide-up] {
     animation-name: solar-slide-up;
-    animation-duration: 1s;
+    @include animation-slide(solar-slide-up, 0%, $moving-distance);
   }
-}
 
-// Fade Animations
-@keyframes solar-fade {
-  from {
-    opacity: 0;
+  &[data-solar=slide-down] {
+    animation-name: solar-slide-down;
+    @include animation-slide(solar-slide-down, 0%, -$moving-distance);
   }
-  to   {
-    opacity: 1;
-  }
-}
 
-@keyframes solar-fade-up {
-  from {
-    transform: translate3d(0, 100px, 0);
-    opacity: 0;
+  &[data-solar=slide-left] {
+    animation-name: solar-slide-left;
+    @include animation-slide(solar-slide-left, $moving-distance, 0%);
   }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
 
-@keyframes solar-fade-right {
-  from {
-    transform: translate3d(-100px, 0, 0);
-    opacity: 0;
-  }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
-@keyframes solar-fade-left {
-  from {
-    transform: translate3d(100px, 0, 0);
-    opacity: 0;
-  }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
-// Slide Animations
-@keyframes solar-slide-up {
-  from {
-    transform: translate3d(0, 100%, 0);
-    opacity: 1;
-  }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
+  &[data-solar=slide-right] {
+    animation-name: solar-slide-right;
+    @include animation-slide(solar-slide-right, -$moving-distance, 0%);
   }
 }

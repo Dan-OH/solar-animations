@@ -1,0 +1,57 @@
+// Fade Animations
+@mixin animation-fade($name, $fromX, $fromY) {
+  @keyframes #{$name} {
+    0% {
+      transform: translate3d($fromX, $fromY, 0);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1; 
+    }
+  }
+}
+
+
+//Flip Animations
+@mixin animation-flip($name, $fromX, $fromY) {
+  @keyframes #{$name} {
+    0% {
+      transform: perspective(2500px) rotateX($fromX) rotateY($fromY);
+      opacity: 1;
+    }
+    100% {
+      transform: perspective(2500px) rotateX(0deg) rotateY(0deg);
+      opacity: 1;
+    }
+  }
+}
+
+
+//Zoom Animations
+@mixin animation-zoom($name, $fromX, $fromY, $scale) {
+  @keyframes #{$name} {
+    0% {
+      transform: translate3d($fromX, $fromY, 0) scale($scale);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+// Slide Animations
+@mixin animation-slide($name, $fromX, $fromY) {
+  @keyframes #{$name} {
+    0% {
+      transform: translate3d($fromX, $fromY, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+}
