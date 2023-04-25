@@ -79,11 +79,11 @@ $zoom-scale: 1.6;
   animation-name: solar-#{$name};
   @keyframes solar-#{$name} {
     0% {
-      transform: perspective(2500px) rotate(set-flip($name), 0deg);
+      transform: perspective(2500px) rotateX(nth(set-flip($name),2)) rotateY(nth(set-flip($name),1));
       opacity: 1;
     }
     100% {
-      transform: perspective(2500px) rotate(0deg, 0deg, 0deg);
+      transform: perspective(2500px) rotateX(0) rotateY(0);
       opacity: 1;
     }
   }

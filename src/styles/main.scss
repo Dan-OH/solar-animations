@@ -1,5 +1,6 @@
 //------- Solar Animations -------
 @import "mixin";
+$moving-attributes: up, down, right, left, up-left, up-right, down-left, down-right;
 
 [data-solar] {
   opacity: 0;
@@ -13,8 +14,7 @@
 
   // Fade Animations
   &[data-solar^='fade']{
-    $fade-attributes: up, down, right, left, up-left, up-right, down-left, down-right;
-    @each $fade in $fade-attributes {
+    @each $fade in $moving-attributes {
       &[data-solar=fade-#{$fade}] {
         @include animation-move("fade-#{$fade}");
       }
@@ -23,8 +23,7 @@
 
   // Slide Animations
   &[data-solar^='slide']{
-    $slide-attributes: up, down, right, left, up-left, up-right, down-left, down-right;
-    @each $slide in $slide-attributes {
+    @each $slide in $moving-attributes {
       &[data-solar=slide-#{$slide}] {
         @include animation-move("slide-#{$slide}");
       }
@@ -34,8 +33,7 @@
 
   // filp Animations
   &[data-solar^='flip']{
-    $flip-attributes: up, down, right, left, up-left, up-right, down-left, down-right;
-    @each $flip in $flip-attributes {
+    @each $flip in $moving-attributes {
       &[data-solar=flip-#{$flip}] {
         @include animation-flip("flip-#{$flip}");
       }
