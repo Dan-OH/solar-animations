@@ -13,7 +13,7 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
   animation-timing-function: ease-in-out;
 
   // Fade Animations
-  &[data-solar^='fade']{
+  &[data-solar^='fade'] {
     @each $fade in $moving-attributes {
       &[data-solar=fade-#{$fade}] {
         @include animation-move("fade-#{$fade}");
@@ -22,7 +22,7 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
   }
 
   // Slide Animations
-  &[data-solar^='slide']{
+  &[data-solar^='slide'] {
     @each $slide in $moving-attributes {
       &[data-solar=slide-#{$slide}] {
         @include animation-move("slide-#{$slide}");
@@ -30,9 +30,8 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
     }
   }
 
-
   // filp Animations
-  &[data-solar^='flip']{
+  &[data-solar^='flip'] {
     @each $flip in $moving-attributes {
       &[data-solar=flip-#{$flip}] {
         @include animation-flip("flip-#{$flip}");
@@ -40,11 +39,11 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
     }
   }
 
-
   //Zoom Animations
-  &[data-solar^='zoom']{
+  &[data-solar^='zoom'] {
     transform-origin: center;
     $zoom-attributes: in, out, in-up, in-down, in-right, in-left, out-up, out-down, out-left, out-right;
+
     @each $zoom in $zoom-attributes {
       &[data-solar=zoom-#{$zoom}] {
         @include animation-move("zoom-#{$zoom}");
@@ -52,4 +51,3 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
     }
   }
 }
-

@@ -5,18 +5,23 @@ $zoom-scale: 1.6;
 @function set-distance($name) {
   $fromX: 0px;
   $fromY: 0px;
+
   @if (str-index($name, up)) {
     $fromY: $moving-distance;
   }
+
   @if (str-index($name, down)) {
     $fromY: -$moving-distance;
   }
+
   @if (str-index($name, left)) {
     $fromX: $moving-distance;
   }
+
   @if (str-index($name, right)) {
     $fromX: -$moving-distance;
   }
+
   @return ($fromX, $fromY);
 }
 
@@ -24,18 +29,23 @@ $zoom-scale: 1.6;
 @function set-flip($name) {
   $flipX: 0deg;
   $flipY: 0deg;
+
   @if (str-index($name, up)) {
     $flipY: $rotating-angle;
   }
+
   @if (str-index($name, down)) {
     $flipY: -$rotating-angle;
   }
+
   @if (str-index($name, left)) {
     $flipX: $rotating-angle;
   }
+
   @if (str-index($name, right)) {
     $flipX: -$rotating-angle;
   }
+
   @return ($flipX, $flipY);
 }
 
@@ -44,30 +54,36 @@ $zoom-scale: 1.6;
 @mixin animation-move($name) {
   $opacity: 0;
   $scale: 1;
+
   @if (str-index($name, slide)) {
     $opacity: 1;
   }
+
   @else {
     $opacity: 0;
   }
+
   @if (str-index($name, zoom)) {
     @if (str-index($name, out)) {
       $scale: $zoom-scale;
     }
+
     @else if (str-index($name, in)) {
       $scale: 0;
     }
   }
 
   animation-name: solar-#{$name};
+
   @keyframes solar-#{$name} {
     0% {
       transform: translate3d(set-distance($name), 0) scale($scale);
       opacity: $opacity;
     }
+
     100% {
       transform: translate3d(0, 0, 0) scale(1);
-      opacity: 1; 
+      opacity: 1;
     }
   }
 }
@@ -77,15 +93,16 @@ $zoom-scale: 1.6;
 @mixin animation-flip($name) {
 
   animation-name: solar-#{$name};
+
   @keyframes solar-#{$name} {
     0% {
-      transform: perspective(2500px) rotateX(nth(set-flip($name),2)) rotateY(nth(set-flip($name),1));
+      transform: perspective(2500px) rotateX(nth(set-flip($name), 2)) rotateY(nth(set-flip($name), 1));
       opacity: 1;
     }
+
     100% {
       transform: perspective(2500px) rotateX(0) rotateY(0);
       opacity: 1;
     }
   }
 }
-
