@@ -43,6 +43,7 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
 
   //Zoom Animations
   &[data-solar^='zoom']{
+    transform-origin: center;
     $zoom-attributes: in, out, in-up, in-down, in-right, in-left, out-up, out-down, out-left, out-right;
     @each $zoom in $zoom-attributes {
       &[data-solar=zoom-#{$zoom}] {

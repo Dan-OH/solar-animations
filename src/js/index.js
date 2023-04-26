@@ -22,7 +22,7 @@ function solarAnimations() {
   document.addEventListener("DOMContentLoaded", function(){
     const observerConfig = {
       root: null,
-      rootMargin: '0px',
+      rootMargin: '50%',
       threshold: 0
     };
 
