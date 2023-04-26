@@ -22,7 +22,7 @@ function solarAnimations() {
   document.addEventListener("DOMContentLoaded", function(){
     const observerConfig = {
       root: null,
-      rootMargin: '50%',
+      rootMargin: '0px',
       threshold: 0
     };
 
@@ -31,7 +31,7 @@ function solarAnimations() {
         if (entry.intersectionRatio > 0) {
           entry.target.classList.add('solar-animated');
         } else {
-          if (entry.boundingClientRect.y > 0) {
+          if (entry.boundingClientRect.y < 0 || entry.boundingClientRect.y > window.innerHeight) {
             entry.target.classList.remove('solar-animated');
           }
         }
