@@ -2,6 +2,16 @@
 @import "mixin";
 $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-right;
 
+// Default Fade Animations
+@keyframes solar-fade {
+  from {
+    opacity: 0;
+  }
+  to   {
+    opacity: 1;
+  }
+}
+
 [data-solar] {
   opacity: 0;
 }
