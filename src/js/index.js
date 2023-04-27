@@ -23,12 +23,12 @@ function solarAnimations() {
     const observerConfig = {
       root: null,
       rootMargin: '0px',
-      threshold: 0
+      threshold: [0, 0.25]
     };
 
     let observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
+        if (entry.intersectionRatio > 0.15) {
           entry.target.classList.add('solar-animated');
         } else {
           if (entry.boundingClientRect.y > 0) {
