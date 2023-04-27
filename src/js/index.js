@@ -17,23 +17,33 @@ Author: DanDun
 import '../styles/main.scss';
 
 function solarAnimations() {
+  let solarDuration = 800;
+  let observerConfig = {
+    root: null,
+    rootMargin: '0px',
+    threshold: [0, 0.25]
+  };
+
+  
   const solarElements = document.querySelectorAll('[data-solar]');
+  solarElements.forEach(solarElement =>{
+    solarElement.style.animationDuration = solarDuration + "ms";
+  });
+  
 
   document.addEventListener("DOMContentLoaded", function(){
-    const observerConfig = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0
-    };
-
     let observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          entry.target.classList.add('solar-animated');
+        console.log(entry.target.style.animationDuration);
+        if (entry.intersectionRatio > 0.15) {
+            entry.target.classList.add('solar-animated');
+            entry.target.classList.add('solar-animating');
+
+            setTimeout(function(){ entry.target.classList.remove('solar-animating')}, solarDuration)
         } else {
-          if (entry.boundingClientRect.y < 0 || entry.boundingClientRect.y > window.innerHeight) {
-            entry.target.classList.remove('solar-animated');
-          }
+            if (!entry.target.classList.contains('solar-animating') && entry.boundingClientRect.y > 0) {
+              entry.target.classList.remove('solar-animated');
+            }
         }
       });
     }, observerConfig);
