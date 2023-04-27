@@ -31,7 +31,7 @@ function solarAnimations() {
         if (entry.intersectionRatio > 0) {
           entry.target.classList.add('solar-animated');
         } else {
-          if (entry.boundingClientRect.y < 0 || entry.boundingClientRect.y > window.innerHeight) {
+          if (entry.boundingClientRect.y > 0) {
             entry.target.classList.remove('solar-animated');
           }
         }
