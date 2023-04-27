@@ -1,4 +1,18 @@
 //------- Solar Animations -------
+@import "mixin";
+$moving-attributes: up, down, right, left, up-left, up-right, down-left, down-right;
+
+// Default Fade Animations
+@keyframes solar-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 [data-solar] {
   opacity: 0;
 }
@@ -10,76 +24,47 @@
   animation-timing-function: ease-in-out;
 
   // Fade Animations
-  &[data-solar=fade-up] {
-    animation-name: solar-fade-up;
-  }
-
-  &[data-solar=fade-right] {
-    animation-name: solar-fade-right;
-  }
-
-  &[data-solar=fade-left] {
-    animation-name: solar-fade-left;
+  &[data-solar^='fade'] {
+    @each $fade in $moving-attributes {
+      &[data-solar=fade-#{$fade}] {
+        @include animation-move("fade-#{$fade}");
+      }
+    }
   }
 
   // Slide Animations
-  &[data-solar=slide-up] {
-    animation-name: solar-slide-up;
-    animation-duration: 1s;
+  &[data-solar^='slide'] {
+    @each $slide in $moving-attributes {
+      &[data-solar=slide-#{$slide}] {
+        @include animation-move("slide-#{$slide}");
+      }
+    }
   }
-}
 
-// Fade Animations
-@keyframes solar-fade {
-  from {
-    opacity: 0;
+  // Filp Animations
+  &[data-solar^='flip'] {
+    @each $flip in $moving-attributes {
+      &[data-solar=flip-#{$flip}] {
+        @include animation-flip("flip-#{$flip}");
+      }
+    }
   }
-  to   {
-    opacity: 1;
-  }
-}
 
-@keyframes solar-fade-up {
-  from {
-    transform: translate3d(0, 100px, 0);
-    opacity: 0;
-  }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
+  // Zoom Animations
+  &[data-solar^='zoom'] {
+    transform-origin: center;
+    $zoom-attributes: in, out;
 
-@keyframes solar-fade-right {
-  from {
-    transform: translate3d(-100px, 0, 0);
-    opacity: 0;
-  }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
+    @each $zoom in $zoom-attributes {
+      &[data-solar=zoom-#{$zoom}] {
+        @include animation-move("zoom-#{$zoom}");
+      }
 
-@keyframes solar-fade-left {
-  from {
-    transform: translate3d(100px, 0, 0);
-    opacity: 0;
-  }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
-// Slide Animations
-@keyframes solar-slide-up {
-  from {
-    transform: translate3d(0, 100%, 0);
-    opacity: 1;
-  }
-  to   {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
+      @each $move in $moving-attributes {
+        &[data-solar=zoom-#{$zoom}-#{$move}] {
+          @include animation-move("zoom-#{$zoom}-#{$move}");
+        }
+      }
+    }
   }
 }
