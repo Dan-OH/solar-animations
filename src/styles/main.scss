@@ -45,6 +45,9 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
     $zoom-attributes: in, out;
 
     @each $zoom in $zoom-attributes {
+      &[data-solar=zoom-#{$zoom}] {
+        @include animation-move("zoom-#{$zoom}");
+      }
       @each $move in $moving-attributes {
         &[data-solar=zoom-#{$zoom}-#{$move}] {
           @include animation-move("zoom-#{$zoom}-#{$move}");
