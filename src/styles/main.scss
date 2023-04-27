@@ -7,7 +7,8 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
   from {
     opacity: 0;
   }
-  to   {
+
+  to {
     opacity: 1;
   }
 }
@@ -40,7 +41,7 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
     }
   }
 
-  // filp Animations
+  // Filp Animations
   &[data-solar^='flip'] {
     @each $flip in $moving-attributes {
       &[data-solar=flip-#{$flip}] {
@@ -49,7 +50,7 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
     }
   }
 
-  //Zoom Animations
+  // Zoom Animations
   &[data-solar^='zoom'] {
     transform-origin: center;
     $zoom-attributes: in, out;
@@ -58,6 +59,7 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
       &[data-solar=zoom-#{$zoom}] {
         @include animation-move("zoom-#{$zoom}");
       }
+
       @each $move in $moving-attributes {
         &[data-solar=zoom-#{$zoom}-#{$move}] {
           @include animation-move("zoom-#{$zoom}-#{$move}");

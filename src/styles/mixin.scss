@@ -89,7 +89,7 @@ $zoom-scale: 1.6;
 }
 
 
-//Flip Animations
+// Flip Animations
 @mixin animation-flip($name) {
 
   animation-name: solar-#{$name};
