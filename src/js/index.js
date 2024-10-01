@@ -9,22 +9,19 @@
   / /| | / __ \/ / __ `__ \/ __ `/ __/ / __ \/ __ \/ ___/
  / ___ |/ / / / / / / / / / /_/ / /_/ / /_/ / / / (__  )
 /_/  |_/_/ /_/_/_/ /_/ /_/\__,_/\__/_/\____/_/ /_/____/
-
-Version: 1.0.0
-Author: DanDun
 */
 
 import '../styles/main.scss';
 
 function solarAnimations() {
-  const solarElements = document.querySelectorAll('[data-solar]');
+  const observerConfig = {
+    root: null,
+    rootMargin: '0px',
+    threshold: [0, 0.25],
+  };
 
-  document.addEventListener('DOMContentLoaded', function () {
-    const observerConfig = {
-      root: null,
-      rootMargin: '0px',
-      threshold: [0, 0.25],
-    };
+  const animateElements = () => {
+    const solarElements = document.querySelectorAll('[data-solar]');
 
     let observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -41,7 +38,21 @@ function solarAnimations() {
     solarElements.forEach((element) => {
       observer.observe(element);
     });
+  };
+
+  // Initialize animation observer after each DOM mutation (React renders, etc.)
+  const mutationObserver = new MutationObserver(() => {
+    animateElements();
   });
+
+  // Observe DOM changes on the document body to detect new React renders
+  mutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+
+  // Initial animation call in case elements are already in the DOM
+  animateElements();
 }
 
 export default solarAnimations;
