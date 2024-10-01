@@ -37,10 +37,15 @@ function solarAnimations(settings = {}) {
   setOptions(settings);
 
   const applyAnimationStyles = (element) => {
-    // Apply animation styles directly to the element
-    element.style.animationDuration = options.duration;
-    element.style.animationDelay = options.delay;
-    element.style.animationTimingFunction = options.easing;
+    // Loop through options keys to set custom styles
+    for (const key in options) {
+      if (options.hasOwnProperty(key)) {
+        const customValue = element.getAttribute(`data-solar-${key}`);
+        element.style[
+          `animation${key.charAt(0).toUpperCase() + key.slice(1)}`
+        ] = customValue || options[key];
+      }
+    }
   };
 
   const observeElements = () => {
