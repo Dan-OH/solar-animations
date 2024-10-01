@@ -20,8 +20,10 @@ function solarAnimations() {
     threshold: [0, 0.25],
   };
 
-  const animateElements = () => {
+  const observeElements = () => {
     const solarElements = document.querySelectorAll('[data-solar]');
+
+    if (!solarElements.length) return; // Optional safeguard
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -38,15 +40,15 @@ function solarAnimations() {
   };
 
   // Observe DOM mutations (e.g., React re-renders)
-  const mutationObserver = new MutationObserver(animateElements);
+  const mutationObserver = new MutationObserver(observeElements);
 
   mutationObserver.observe(document.body, {
     childList: true,
     subtree: true,
   });
 
-  // Initial animation for existing elements
-  animateElements();
+  // Initial observation for existing elements
+  observeElements();
 }
 
 export default solarAnimations;
