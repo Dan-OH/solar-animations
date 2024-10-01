@@ -53,12 +53,14 @@ function solarAnimations(settings = {}) {
 
     if (!solarElements.length) return;
 
-    solarElements.forEach(applyAnimationStyles); // Apply animation styles to all elements
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const { target, intersectionRatio } = entry;
+
+          // Update styles dynamically when intersection changes
+          applyAnimationStyles(target);
+
           if (intersectionRatio > options.threshold[0]) {
             target.classList.add('solar-animated');
           } else {
