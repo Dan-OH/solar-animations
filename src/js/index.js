@@ -13,28 +13,60 @@
 
 import '../styles/main.scss';
 
-function solarAnimations() {
-  const observerConfig = {
-    root: null,
-    rootMargin: '0px',
-    threshold: [0, 0.25],
+const defaultOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: [0, 0.25],
+  duration: '0.5s',
+  delay: '0',
+  easing: 'ease',
+};
+
+let options = { ...defaultOptions };
+
+const setOptions = (settings) => {
+  if (settings) {
+    options = {
+      ...options,
+      ...settings,
+    };
+  }
+};
+
+function solarAnimations(settings = {}) {
+  setOptions(settings);
+
+  const applyAnimationStyles = (element) => {
+    // Apply animation styles directly to the element
+    element.style.animationDuration = options.duration;
+    element.style.animationDelay = options.delay;
+    element.style.animationTimingFunction = options.easing;
   };
 
   const observeElements = () => {
     const solarElements = document.querySelectorAll('[data-solar]');
 
-    if (!solarElements.length) return; // Optional safeguard
+    if (!solarElements.length) return;
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const { target, intersectionRatio } = entry;
-        if (intersectionRatio > 0.15) {
-          target.classList.add('solar-animated');
-        } else {
-          target.classList.remove('solar-animated');
-        }
-      });
-    }, observerConfig);
+    solarElements.forEach(applyAnimationStyles); // Apply animation styles to all elements
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const { target, intersectionRatio } = entry;
+          if (intersectionRatio > options.threshold[0]) {
+            target.classList.add('solar-animated');
+          } else {
+            target.classList.remove('solar-animated');
+          }
+        });
+      },
+      {
+        root: options.root,
+        rootMargin: options.rootMargin,
+        threshold: options.threshold,
+      }
+    );
 
     solarElements.forEach((element) => observer.observe(element));
   };
