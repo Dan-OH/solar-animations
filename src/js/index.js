@@ -23,35 +23,29 @@ function solarAnimations() {
   const animateElements = () => {
     const solarElements = document.querySelectorAll('[data-solar]');
 
-    let observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.intersectionRatio > 0.15) {
-          entry.target.classList.add('solar-animated');
+        const { target, intersectionRatio } = entry;
+        if (intersectionRatio > 0.15) {
+          target.classList.add('solar-animated');
         } else {
-          if (entry.boundingClientRect.y > 0) {
-            entry.target.classList.remove('solar-animated');
-          }
+          target.classList.remove('solar-animated');
         }
       });
     }, observerConfig);
 
-    solarElements.forEach((element) => {
-      observer.observe(element);
-    });
+    solarElements.forEach((element) => observer.observe(element));
   };
 
-  // Initialize animation observer after each DOM mutation (React renders, etc.)
-  const mutationObserver = new MutationObserver(() => {
-    animateElements();
-  });
+  // Observe DOM mutations (e.g., React re-renders)
+  const mutationObserver = new MutationObserver(animateElements);
 
-  // Observe DOM changes on the document body to detect new React renders
   mutationObserver.observe(document.body, {
     childList: true,
     subtree: true,
   });
 
-  // Initial animation call in case elements are already in the DOM
+  // Initial animation for existing elements
   animateElements();
 }
 
