@@ -19,15 +19,15 @@ import '../styles/main.scss';
 function solarAnimations() {
   const solarElements = document.querySelectorAll('[data-solar]');
 
-  document.addEventListener("DOMContentLoaded", function(){
+  document.addEventListener('DOMContentLoaded', function () {
     const observerConfig = {
       root: null,
       rootMargin: '0px',
-      threshold: [0, 0.25]
+      threshold: [0, 0.25],
     };
 
-    let observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+    let observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
         if (entry.intersectionRatio > 0.15) {
           entry.target.classList.add('solar-animated');
         } else {
@@ -37,11 +37,11 @@ function solarAnimations() {
         }
       });
     }, observerConfig);
-    
-    solarElements.forEach(element => {
+
+    solarElements.forEach((element) => {
       observer.observe(element);
     });
   });
-};
+}
 
 export default solarAnimations;
