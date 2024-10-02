@@ -17,7 +17,7 @@ Import script, styles and initialize:
 ```javascript
 import solarAnimations from 'solar-animations';
 import 'solar-animations/dist/solar-animations.min.css';
-// ..
+// ...
 solarAnimations();
 ```
 
@@ -48,6 +48,14 @@ solarAnimations({
   delay: '0.2s',
   easing: 'ease-in-out',
 });
+```
+
+### Custom Options for Specific Elements
+
+You can also set custom options for specific elements using `data-solar-[option]` attributes. For example:
+
+```html
+<div data-solar="fade-up" data-solar-duration="3s" data-solar-delay="0.5s"></div>
 ```
 
 ## Available Animations
