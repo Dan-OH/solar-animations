@@ -14,7 +14,7 @@ npm i solar-animations
 
 Import script, styles and initialize:
 
-```js
+```javascript
 import solarAnimations from 'solar-animations';
 import 'solar-animations/dist/solar-animations.min.css';
 // ..
@@ -31,10 +31,30 @@ Add `data-solar` attributes to elements you want animated
 
 ## Options
 
-### Available Animations
+You can customize the animation options by passing an object to the `solarAnimations` function. The available options are:
 
-#### Fade Animations
+- `root`: The element that is used as the viewport for checking visibility (default is `null`).
+- `rootMargin`: Margin around the root (default is `'0px'`).
+- `threshold`: A single number or an array of numbers indicating at what percentage of the target's visibility the observer's callback should be executed (default is `[0, 0.25]`).
+- `duration`: Duration of the animation (default is `'0.5s'`).
+- `delay`: Delay before the animation starts (default is `'0'`).
+- `easing`: Easing function for the animation (default is `'ease'`).
 
+Example of setting custom options:
+
+```javascript
+solarAnimations({
+  duration: '1s',
+  delay: '0.2s',
+  easing: 'ease-in-out',
+});
+```
+
+## Available Animations
+
+The library supports various animations categorized as follows:
+
+### Fade Animations
 - fade
 - fade-up
 - fade-down
@@ -45,8 +65,7 @@ Add `data-solar` attributes to elements you want animated
 - fade-down-left
 - fade-down-right
 
-#### Slide Animations
-
+### Slide Animations
 - slide
 - slide-up
 - slide-down
@@ -57,34 +76,32 @@ Add `data-solar` attributes to elements you want animated
 - slide-down-left
 - slide-down-right
 
-#### Flip Animations
-
+### Flip Animations
 - flip-up
 - flip-down
 - flip-left
 - flip-right
 
-#### Zoom Animations
+### Zoom Animations
+- zoom-in
+- zoom-in-up
+- zoom-in-down
+- zoom-in-left
+- zoom-in-right
+- zoom-in-up-left
+- zoom-in-up-right
+- zoom-in-down-left
+- zoom-in-down-right
+- zoom-out
+- zoom-out-up
+- zoom-out-down
+- zoom-out-left
+- zoom-out-right
+- zoom-out-up-left
+- zoom-out-up-right
+- zoom-out-down-left
+- zoom-out-down-right
 
-- Zoom In
+## License
 
-  - zoom-in
-  - zoom-in-up
-  - zoom-in-down
-  - zoom-in-left
-  - zoom-in-right
-  - zoom-in-up-left
-  - zoom-in-up-right
-  - zoom-in-down-left
-  - zoom-in-down-right
-
-- Zoom Out
-  - zoom-out
-  - zoom-out-up
-  - zoom-out-down
-  - zoom-out-left
-  - zoom-out-right
-  - zoom-out-up-left
-  - zoom-out-up-right
-  - zoom-out-down-left
-  - zoom-out-down-right
+This project is licensed under the ISC License.
