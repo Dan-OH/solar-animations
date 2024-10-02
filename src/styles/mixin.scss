@@ -25,7 +25,6 @@ $zoom-scale: 1.6;
   @return ($fromX, $fromY);
 }
 
-
 @function set-flip($name) {
   $flipX: 0deg;
   $flipY: 0deg;
@@ -49,7 +48,6 @@ $zoom-scale: 1.6;
   @return ($flipX, $flipY);
 }
 
-
 // Fade Animations
 @mixin animation-move($name) {
   $opacity: 0;
@@ -57,18 +55,14 @@ $zoom-scale: 1.6;
 
   @if (str-index($name, slide)) {
     $opacity: 1;
-  }
-
-  @else {
+  } @else {
     $opacity: 0;
   }
 
   @if (str-index($name, zoom)) {
     @if (str-index($name, out)) {
       $scale: $zoom-scale;
-    }
-
-    @else if (str-index($name, in)) {
+    } @else if (str-index($name, in)) {
       $scale: 0;
     }
   }
@@ -88,15 +82,14 @@ $zoom-scale: 1.6;
   }
 }
 
-
 // Flip Animations
 @mixin animation-flip($name) {
-
   animation-name: solar-#{$name};
 
   @keyframes solar-#{$name} {
     0% {
-      transform: perspective(2500px) rotateX(nth(set-flip($name), 2)) rotateY(nth(set-flip($name), 1));
+      transform: perspective(2500px) rotateX(nth(set-flip($name), 2))
+        rotateY(nth(set-flip($name), 1));
       opacity: 1;
     }
 

@@ -1,6 +1,7 @@
 //------- Solar Animations -------
-@import "mixin";
-$moving-attributes: up, down, right, left, up-left, up-right, down-left, down-right;
+@import 'mixin';
+$moving-attributes: up, down, right, left, up-left, up-right, down-left,
+  down-right;
 
 // Default Fade Animations
 @keyframes solar-fade {
@@ -19,15 +20,13 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
 
 [data-solar].solar-animated {
   animation-name: solar-fade;
-  animation-duration: 0.8s;
   animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
 
   // Fade Animations
   &[data-solar^='fade'] {
     @each $fade in $moving-attributes {
-      &[data-solar=fade-#{$fade}] {
-        @include animation-move("fade-#{$fade}");
+      &[data-solar='fade-#{$fade}'] {
+        @include animation-move('fade-#{$fade}');
       }
     }
   }
@@ -35,8 +34,8 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
   // Slide Animations
   &[data-solar^='slide'] {
     @each $slide in $moving-attributes {
-      &[data-solar=slide-#{$slide}] {
-        @include animation-move("slide-#{$slide}");
+      &[data-solar='slide-#{$slide}'] {
+        @include animation-move('slide-#{$slide}');
       }
     }
   }
@@ -44,8 +43,8 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
   // Filp Animations
   &[data-solar^='flip'] {
     @each $flip in $moving-attributes {
-      &[data-solar=flip-#{$flip}] {
-        @include animation-flip("flip-#{$flip}");
+      &[data-solar='flip-#{$flip}'] {
+        @include animation-flip('flip-#{$flip}');
       }
     }
   }
@@ -56,13 +55,13 @@ $moving-attributes: up, down, right, left, up-left, up-right, down-left, down-ri
     $zoom-attributes: in, out;
 
     @each $zoom in $zoom-attributes {
-      &[data-solar=zoom-#{$zoom}] {
-        @include animation-move("zoom-#{$zoom}");
+      &[data-solar='zoom-#{$zoom}'] {
+        @include animation-move('zoom-#{$zoom}');
       }
 
       @each $move in $moving-attributes {
-        &[data-solar=zoom-#{$zoom}-#{$move}] {
-          @include animation-move("zoom-#{$zoom}-#{$move}");
+        &[data-solar='zoom-#{$zoom}-#{$move}'] {
+          @include animation-move('zoom-#{$zoom}-#{$move}');
         }
       }
     }
