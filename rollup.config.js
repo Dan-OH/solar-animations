@@ -13,7 +13,7 @@ export default {
   ],
   output: [
     {
-      file: 'dist/solar-animations.js',
+      file: pkg.main,
       format: 'cjs',
     },
     {
@@ -21,9 +21,9 @@ export default {
       format: 'es',
     },
     {
-      name: 'solar-animations',
       file: pkg.browser,
       format: 'umd',
+      name: 'solar-animations',
     },
   ],
 };
