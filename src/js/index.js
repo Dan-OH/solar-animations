@@ -9,39 +9,85 @@
   / /| | / __ \/ / __ `__ \/ __ `/ __/ / __ \/ __ \/ ___/
  / ___ |/ / / / / / / / / / /_/ / /_/ / /_/ / / / (__  )
 /_/  |_/_/ /_/_/_/ /_/ /_/\__,_/\__/_/\____/_/ /_/____/
-
-Version: 1.0.0
-Author: DanDun
 */
 
 import '../styles/main.scss';
 
-function solarAnimations() {
-  const solarElements = document.querySelectorAll('[data-solar]');
-
-  document.addEventListener("DOMContentLoaded", function(){
-    const observerConfig = {
-      root: null,
-      rootMargin: '0px',
-      threshold: [0, 0.25]
-    };
-
-    let observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0.15) {
-          entry.target.classList.add('solar-animated');
-        } else {
-          if (entry.boundingClientRect.y > 0) {
-            entry.target.classList.remove('solar-animated');
-          }
-        }
-      });
-    }, observerConfig);
-    
-    solarElements.forEach(element => {
-      observer.observe(element);
-    });
-  });
+const defaultOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: [0, 0.25],
+  duration: '0.5s',
+  delay: '0',
+  easing: 'ease',
 };
+
+let options = { ...defaultOptions };
+
+const setOptions = (settings) => {
+  if (settings) {
+    options = {
+      ...options,
+      ...settings,
+    };
+  }
+};
+
+function solarAnimations(settings = {}) {
+  setOptions(settings);
+
+  const applyAnimationStyles = (element) => {
+    // Loop through options keys to set custom styles
+    for (const key in options) {
+      if (options.hasOwnProperty(key)) {
+        const customValue = element.getAttribute(`data-solar-${key}`);
+        element.style[
+          `animation${key.charAt(0).toUpperCase() + key.slice(1)}`
+        ] = customValue || options[key];
+      }
+    }
+  };
+
+  const observeElements = () => {
+    const solarElements = document.querySelectorAll('[data-solar]');
+
+    if (!solarElements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const { target, intersectionRatio } = entry;
+
+          // Update styles dynamically when intersection changes
+          applyAnimationStyles(target);
+
+          if (intersectionRatio > options.threshold[0]) {
+            target.classList.add('solar-animated');
+          } else {
+            target.classList.remove('solar-animated');
+          }
+        });
+      },
+      {
+        root: options.root,
+        rootMargin: options.rootMargin,
+        threshold: options.threshold,
+      }
+    );
+
+    solarElements.forEach((element) => observer.observe(element));
+  };
+
+  // Observe DOM mutations (e.g., React re-renders)
+  const mutationObserver = new MutationObserver(observeElements);
+
+  mutationObserver.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+
+  // Initial observation for existing elements
+  observeElements();
+}
 
 export default solarAnimations;

@@ -1,6 +1,6 @@
 import terser from '@rollup/plugin-terser';
 import scss from 'rollup-plugin-scss';
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json';
 
 export default {
   input: 'src/js/index.js',
@@ -13,13 +13,17 @@ export default {
   ],
   output: [
     {
-      name: 'solar-animations',
-      file: pkg.browser,
-      format: 'umd',
+      file: pkg.main,
+      format: 'cjs',
     },
     {
       file: pkg.module,
       format: 'es',
+    },
+    {
+      file: pkg.browser,
+      format: 'umd',
+      name: 'solar-animations',
     },
   ],
 };
